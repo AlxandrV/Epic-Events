@@ -1,3 +1,4 @@
+from enum import unique
 from tkinter import CASCADE
 from django.db import models
 from django.conf import settings
@@ -10,7 +11,7 @@ class SalesTeam(models.Model):
 
 class ManageTeam(models.Model):
 
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True)
 
 
 class SupportTeam(models.Model):
