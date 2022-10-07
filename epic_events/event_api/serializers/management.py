@@ -4,7 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-from .models import SalesTeam, SupportTeam, ManageTeam
+from event_api.models import SalesTeam, SupportTeam, ManageTeam
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,8 +44,71 @@ class UserSerializer(serializers.ModelSerializer):
         raise serializers.ValidationError({'Exception': str(log_error)})
 
 
+class UserMinimalSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
 class ManageTeamSerializer(serializers.ModelSerializer):
+
+    user = User
 
     class Meta:
         model = ManageTeam
+        fields = '__all__'
+
+
+class ManageTeamDetailSerializer(serializers.ModelSerializer):
+
+    user = UserSerializer()
+
+    class Meta:
+        model = ManageTeam
+        fields = '__all__'
+
+
+class SalesTeamSerializer(serializers.ModelSerializer):
+
+    user = User
+
+    class Meta:
+        model = SalesTeam
+        fields = '__all__'
+
+
+class SalesTeamDetailSerializer(serializers.ModelSerializer):
+
+    user = UserSerializer()
+
+    class Meta:
+        model = SalesTeam
+        fields = '__all__'
+
+
+class SupportTeamSerializer(serializers.ModelSerializer):
+
+    user = ManageTeam
+
+    class Meta:
+        model = SupportTeam
+        fields = '__all__'
+
+
+class SupportTeamDetailSerializer(serializers.ModelSerializer):
+
+    class EmbeddedManageTeamSerializer(serializers.ModelSerializer):
+
+        user = UserMinimalSerializer()
+
+        class Meta:
+            model = ManageTeam
+            fields = '__all__'
+
+
+    user = EmbeddedManageTeamSerializer()
+
+    class Meta:
+        model = SupportTeam
         fields = '__all__'

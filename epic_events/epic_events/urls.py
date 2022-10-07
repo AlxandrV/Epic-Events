@@ -17,10 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from event_api.views import RegisterView
+from event_api.views import RegisterView, ManageTeamView, SalesTeamView, SupportTeamView, ClientView, ContractView, EventView
 
 router = routers.DefaultRouter()
 router.register('register', RegisterView, basename='register')
+router.register('manage', ManageTeamView, basename='manage')
+router.register('sales', SalesTeamView, basename='sales')
+router.register('support', SupportTeamView, basename='support')
+router.register('client', ClientView, basename='client')
+router.register('contract', ContractView, basename='contract')
+router.register('event', EventView, basename='event')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
