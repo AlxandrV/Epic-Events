@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 
 from event_api.models import Contract, Event
+from event_api.permissions import IsAuthenticatedGetEvent
 from event_api.serializers import EventSerializer, EventDetailSerializer
 
 
@@ -9,6 +10,7 @@ class EventView(ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     detail_serializer_class = EventDetailSerializer
+    permission_classes = [IsAuthenticatedGetEvent]
 
     def get_serializer_class(self):
         if self.action == 'retrieve':

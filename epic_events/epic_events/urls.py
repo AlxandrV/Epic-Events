@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from rest_framework import routers
+
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 
 from event_api.views import RegisterView, ManageTeamView, SalesTeamView, SupportTeamView, ClientView, ContractView, EventView
 
@@ -32,5 +36,7 @@ router.register('event', EventView, basename='event')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('login/', TokenObtainPairView.as_view(), name='login'),
+    path('refresh/', TokenRefreshView.as_view(), name='refresh'),
     path('', include(router.urls))
 ]

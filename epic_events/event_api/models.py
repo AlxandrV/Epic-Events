@@ -28,7 +28,7 @@ class Client(models.Model):
     company_name = models.CharField(max_length=250)
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
-    sales_contact = models.ForeignKey(to=SalesTeam, on_delete=models.CASCADE)
+    sales_contact = models.ForeignKey(to=SalesTeam, on_delete=models.SET_NULL, null=True)
 
 
 class Contract(models.Model):
@@ -45,7 +45,7 @@ class Event(models.Model):
 
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
-    support_contact = models.ForeignKey(to=SupportTeam, on_delete=models.CASCADE)
+    support_contact = models.ForeignKey(to=SupportTeam, on_delete=models.SET_NULL, null=True)
     event_status = models.ForeignKey(to=Contract, on_delete=models.CASCADE)
     attendees = models.IntegerField()
     event_dates = models.DateTimeField()
