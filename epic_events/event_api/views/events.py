@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import filters
 
 from event_api.models import Contract, Event
 from event_api.permissions import IsAuthenticatedGetEvent
@@ -11,6 +12,8 @@ class EventView(ModelViewSet):
     serializer_class = EventSerializer
     detail_serializer_class = EventDetailSerializer
     permission_classes = [IsAuthenticatedGetEvent]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ('event_status__client__company_name', 'event_status__client__email', 'event_dates')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
