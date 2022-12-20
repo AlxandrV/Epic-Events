@@ -5,11 +5,8 @@ Epic Event web app
 ## Summary
 
 - [Local development](#local-development)
-- [Local development from Docker](#local-development-from-docker)
-- [Deploy](#deploy)
-    - [CircleCI](#circleci)
-    - [Heroku](#heroku)
-    - [Sentry](#sentry)
+- [Admin](#admin)
+- [API Documentation](#api-documentation)
 
 ## Local development 
 
@@ -41,6 +38,16 @@ In the rest of the local development documentation, it is assumed that the `pyth
 - `python epic_events/manage.py runserver`
 - Go to `http://localhost:8000` in a browser.
 
-## Documentation Postman
+### Windows
+
+Using PowerShell, as above except :
+
+- To activate the virtual environment, `.\venv\Scripts\Activate.ps1` 
+
+## Admin
+
+You have access to admin interface with `http://localhost:8000/admin/`
+
+## API Documentation
 
 Go to read the documentation [Postman](https://documenter.getpostman.com/view/22332147/2s8Z6saaxr)
