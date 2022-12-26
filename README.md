@@ -7,6 +7,7 @@ Epic Event web app
 - [Local development](#local-development)
 - [Admin](#admin)
 - [API Documentation](#api-documentation)
+- [Tracking log and error](#tracking-log-and-error)
 
 ## Local development 
 
@@ -51,3 +52,8 @@ You have access to admin interface with `http://localhost:8000/admin/`
 ## API Documentation
 
 Go to read the documentation [Postman](https://documenter.getpostman.com/view/22332147/2s8Z6saaxr)
+
+## Tracking log and error
+
+All logs are stocked in `debug.log` file.  
+All tracking and logging are configure in `settings.py`. To customize it, see the Django [documentation](https://docs.djangoproject.com/en/2.2/topics/logging/).
